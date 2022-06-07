@@ -86,9 +86,9 @@ func createMovies(w http.ResponseWriter, r *http.Request) {
 
 	_ = json.NewDecoder(r.Body).Decode(&movie)
 
-	movies = append(movies, movie)
-
 	movie.ID = strconv.Itoa(rand.Intn(1e10))
+
+	movies = append(movies, movie)
 
 	json.NewEncoder(w).Encode(movie)
 
@@ -116,10 +116,7 @@ func deleteMovies(w http.ResponseWriter, r *http.Request) {
 
 	movies = append(movies[:index], movies[index:]...)
 
-	json.NewEncoder(w).Encode(`{
-		message : "Movie Deleted",
-		status : 200
-	}`)
+	json.NewEncoder(w).Encode(`{message:"Movie Deleted",status:200}`)
 
 }
 
